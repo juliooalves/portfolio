@@ -20,7 +20,7 @@ export default function About() {
       justify-self-center items-center text-white mt-32  p-2 "
     >
       <div
-        className={` text-black dark:text-white text-[40px] transition-all duration-1000  
+        className={` justify-self-center text-black dark:text-white text-[40px] transition-all duration-1000  
         font-sans ${isLoaded ? "translate-x-0 opacity-1" : "-translate-x-[230%] opacity-10"}`}
       >
         <p>Hi, Welcome!</p>
@@ -35,7 +35,7 @@ export default function About() {
             cursorStyle={{ width: "10px", color: "red" }}
           />
         </p>
-        <p className="pt-1  lg:text-[20px] text-[17px] text-slate-900/90 dark:text-gray-300/85">
+        <p className="pt-1  lg:text-[20px] text-[16px] text-slate-900/90 dark:text-gray-300/85">
           <span className="font-bold">
             Full Stack Developer that has security on his core.
           </span>
@@ -44,7 +44,7 @@ export default function About() {
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-5 md:grid-cols-5 grid-cols-3  mt-3 justify-items-center">
+      <div className="grid w-[75%] lg:grid-cols-5 md:grid-cols-5 grid-cols-3  mt-3 justify-items-center lg:justify-self-center sm:justify-self-start">
         <FlashInfo name="Open for Work" />
         <FlashInfo name="Freelancer Open" />
         <FlashInfo name="AppSec" />

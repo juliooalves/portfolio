@@ -10,7 +10,7 @@ export default function Projects() {
   return (
     <div ref={ref}>
       <div
-        className={` select-none pointer-events-none text-black  p-2 min-h-screen dark:text-white text-[40px] transition-all duration-1000
+        className={` select-none  text-black  p-2 min-h-screen dark:text-white text-[40px] transition-all duration-1000
       ${inView ? "translate-y-0 opacity-1" : " -translate-y-16 opacity-0"}`}
       >
         Projects

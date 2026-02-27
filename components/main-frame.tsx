@@ -2,16 +2,18 @@
 import { Input } from "@/components/ui/input";
 import TopBar from "@/components/top-bar";
 import Welcome from "@/components/welcome";
-import About from "@/components/about";
+import Stacks from "@/components/stacks";
 import Projects from "@/components/projects";
 import Footer from "@/components/footer";
+import About from "@/components/about";
 export default function MainFrame() {
   return (
     <>
       <TopBar />
       <Welcome />
-      <About />
+      <Stacks />
       <Projects />
+      <About />
       <Footer />
     </>
   );

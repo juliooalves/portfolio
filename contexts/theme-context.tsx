@@ -1,7 +1,7 @@
 "use client";
 import { useContext, createContext, useState, useEffect } from "react";
 const ThemeContext = createContext({
-  theme: "dark",
+  theme: "dark" | "light",
   toggleTheme: () => {},
 });
 
