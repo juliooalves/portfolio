@@ -7,8 +7,7 @@ Built with [Next.js 16](https://nextjs.org/) and hosted on [Vercel](https://verc
 ## Tech Stack
 
 - **Framework:** Next.js 16 (App Router, TypeScript)
-- **Styling:** Tailwind CSS v4, shadcn/ui
-- **3D:** Three.js + React Three Fiber + Drei
+- **Styling:** Tailwind CSS v3, shadcn/ui
 - **Animations:** react-type-animation, react-intersection-observer
 - **Package Manager:** pnpm
 

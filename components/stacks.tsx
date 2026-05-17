@@ -12,7 +12,6 @@ import {
 
 interface SimpleIcon {
   title: string;
-  hex: string;
   path: string;
 }
 
@@ -34,43 +33,25 @@ function StackCard({
   index: number;
   inView: boolean;
 }) {
-  const brandColor = `#${icon.hex}`;
-
   return (
     <div
-      className="group flex flex-col items-center gap-3 p-5 rounded-2xl border cursor-default select-none"
+      className="group flex flex-col items-center gap-3 rounded-xl border border-slate-200 bg-slate-100/80 p-5 text-slate-900/90
+        cursor-default select-none transition-all duration-500
+        hover:border-slate-300 hover:bg-slate-100 hover:shadow-lg hover:shadow-slate-300/10
+        dark:border-white/10 dark:bg-white/5 dark:text-gray-300/90 dark:hover:border-white/20 dark:hover:bg-white/[0.07]
+        dark:hover:shadow-black/20"
       style={{
-        transitionDelay: inView ? `${index * 75}ms` : "0ms",
         opacity: inView ? 1 : 0,
-        transform: inView ? "translateY(0) scale(1)" : "translateY(20px) scale(0.92)",
-        transition:
-          "opacity 0.45s ease, transform 0.45s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease",
-        borderColor: "rgba(150,150,150,0.15)",
-        background: "rgba(150,150,150,0.04)",
-      }}
-      onMouseEnter={(e) => {
-        const el = e.currentTarget as HTMLDivElement;
-        el.style.background = `color-mix(in srgb, ${brandColor} 10%, transparent)`;
-        el.style.borderColor = `color-mix(in srgb, ${brandColor} 45%, transparent)`;
-        el.style.boxShadow = `0 4px 24px color-mix(in srgb, ${brandColor} 18%, transparent)`;
-        el.style.transform = "translateY(-4px) scale(1.04)";
-      }}
-      onMouseLeave={(e) => {
-        const el = e.currentTarget as HTMLDivElement;
-        el.style.background = "rgba(150,150,150,0.04)";
-        el.style.borderColor = "rgba(150,150,150,0.15)";
-        el.style.boxShadow = "none";
-        el.style.transform = "translateY(0) scale(1)";
+        transform: inView
+          ? "translateY(0) scale(1)"
+          : "translateY(20px) scale(0.92)",
+        transitionDelay: inView ? `${index * 75}ms` : "0ms",
       }}
     >
-      {/* Icon wrapper */}
       <div
-        className="flex items-center justify-center rounded-xl"
-        style={{
-          width: 56,
-          height: 56,
-          background: `color-mix(in srgb, ${brandColor} 14%, transparent)`,
-        }}
+        className="flex h-14 w-14 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-600
+          transition-colors duration-300 group-hover:text-slate-800
+          dark:border-white/10 dark:bg-black/20 dark:text-gray-300 dark:group-hover:text-gray-100"
       >
         <svg
           role="img"
@@ -80,15 +61,11 @@ function StackCard({
           height={30}
           aria-label={icon.title}
         >
-          <path d={icon.path} fill={brandColor} />
+          <path d={icon.path} fill="currentColor" />
         </svg>
       </div>
 
-      {/* Label */}
-      <span
-        className="text-xs font-semibold text-center leading-tight"
-        style={{ opacity: 0.72 }}
-      >
+      <span className="text-center text-xs font-semibold leading-tight text-slate-500 dark:text-gray-400">
         {icon.title}
       </span>
     </div>
@@ -106,7 +83,7 @@ export default function Stacks() {
     <div
       id="stacks"
       ref={ref}
-      className="w-full min-h-screen flex flex-col justify-center items-start px-4 py-16 max-w-3xl mx-auto"
+      className="w-full min-h-screen flex flex-col justify-start items-start px-4 py-16 max-w-7xl mx-auto"
     >
       {/* Heading */}
       <div

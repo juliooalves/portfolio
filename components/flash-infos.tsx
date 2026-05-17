@@ -2,15 +2,14 @@
 
 import LoadContext from "@/contexts/load-context";
 import { useContext } from "react";
-import { Button } from "@/components/ui/button";
 
 export default function FlashInfo({ name }: { name: string }) {
-  const { isLoaded, setIsLoaded } = useContext(LoadContext);
+  const { isLoaded } = useContext(LoadContext);
   return (
     <div
-      className={` bg-slate-100  border border-slate-300   text-black dark:border-none
-        dark:bg-stone-900 p-2 md:p-2.5 dark:text-gray-300/90 mt-2 rounded-lg
-        text-[11px] sm:text-[13px] md:text-[14px]  transition-all duration-1000 ${isLoaded ? "translate-y-0 opacity-1" : "translate-y-20 opacity-0 "}`}
+      className={`shrink-0 whitespace-nowrap bg-slate-100 border border-slate-300 text-black dark:border-none
+        dark:bg-stone-900 px-3 py-2 md:p-2.5 dark:text-gray-300/90 mt-2 rounded-lg
+        text-[12px] sm:text-[13px] md:text-[14px] transition-all duration-1000 ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0 "}`}
     >
       {name}
     </div>

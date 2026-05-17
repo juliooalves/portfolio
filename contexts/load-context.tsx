@@ -1,15 +1,31 @@
 "use client";
 
-import { useState, useEffect, createContext, ReactNode } from "react";
+import {
+  useState,
+  useEffect,
+  createContext,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+} from "react";
 
-const LoadContext = createContext(false);
+type LoadContextValue = {
+  isLoaded: boolean;
+  setIsLoaded: Dispatch<SetStateAction<boolean>>;
+};
+
+const LoadContext = createContext<LoadContextValue>({
+  isLoaded: false,
+  setIsLoaded: () => {},
+});
 
 export const LoadProvider = ({ children }: { children: ReactNode }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     setIsLoaded(true);
-    return;
   }, []);
+
   return (
     <LoadContext.Provider value={{ isLoaded, setIsLoaded }}>
       {children}

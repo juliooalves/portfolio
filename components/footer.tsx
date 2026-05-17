@@ -1,5 +1,8 @@
-import React from "react";
-import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import {
+  footerSocialLinks,
+  type SocialLink as SocialLinkType,
+} from "@/lib/social-links";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -12,21 +15,9 @@ const Footer = () => {
           </p>
 
           <div className="flex items-center gap-6">
-            <SocialLink
-              href="https://github.com/juliooalves"
-              icon={<Github size={20} />}
-              label="GitHub"
-            />
-            <SocialLink
-              href="https://linkedin.com/julio-alves-dev"
-              icon={<Linkedin size={20} />}
-              label="LinkedIn"
-            />
-            <SocialLink
-              href="mailto:julio0alves@gmail.com"
-              icon={<Mail size={20} />}
-              label="Email"
-            />
+            {footerSocialLinks.map((link) => (
+              <SocialLink key={link.label} link={link} />
+            ))}
           </div>
         </div>
       </div>
@@ -34,16 +25,20 @@ const Footer = () => {
   );
 };
 
-const SocialLink = ({ href, icon, label }) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label={label}
-    className="text-slate-500 transition-all hover:text-slate-900 dark:text-slate-300/80 dark:hover:text-white"
-  >
-    {icon}
-  </a>
-);
+const SocialLink = ({ link }: { link: SocialLinkType }) => {
+  const Icon = link.icon;
+
+  return (
+    <a
+      href={link.href}
+      target={link.external ? "_blank" : undefined}
+      rel={link.external ? "noopener noreferrer" : undefined}
+      aria-label={link.label}
+      className="text-slate-500 transition-all hover:text-slate-900 dark:text-slate-300/80 dark:hover:text-white"
+    >
+      <Icon size={20} />
+    </a>
+  );
+};
 
 export default Footer;

@@ -1,4 +1,6 @@
 "use client";
+
+import ContactCard from "@/components/contact-card";
 import { useInView } from "react-intersection-observer";
 
 export default function Contact() {
@@ -14,6 +16,12 @@ export default function Contact() {
         <p className="text-slate-900/90 dark:text-gray-300/90 lg:text-[20px] text-[17px]">
           Get in touch
         </p>
+      </div>
+
+      <div
+        className={`px-4 sm:px-6 transition-all duration-1000 ${inView ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}
+      >
+        <ContactCard />
       </div>
     </div>
   );
