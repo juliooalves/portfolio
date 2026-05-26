@@ -1,7 +1,4 @@
-"use client";
-
-import { Send } from "lucide-react";
-import { primaryContactLink, socialLinks } from "@/lib/social-links";
+import { socialLinks } from "@/lib/social-links";
 
 export default function ContactCard() {
   return (
@@ -11,7 +8,7 @@ export default function ContactCard() {
         dark:border-white/10 dark:bg-white/5 dark:text-gray-300/90 dark:hover:border-white/20 dark:hover:bg-white/[0.07]
         dark:hover:shadow-black/20 sm:p-6 lg:grid-cols-[1fr_1.4fr] lg:p-8"
     >
-      <div className="flex flex-col justify-between gap-5">
+      <div className="flex flex-col justify-center gap-5">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-gray-500">
             Available for work
@@ -24,14 +21,6 @@ export default function ContactCard() {
             next steps, risks, and a practical path to ship.
           </p>
         </div>
-
-        <a
-          href={primaryContactLink.href}
-          className="inline-flex h-11 w-fit items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-semibold text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-200 dark:border-white/10 dark:bg-black/20 dark:text-gray-200 dark:hover:border-white/20 dark:hover:bg-white/10"
-        >
-          Send email
-          <Send size={16} />
-        </a>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2">

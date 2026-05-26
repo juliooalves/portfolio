@@ -17,8 +17,8 @@ export type SocialLink = {
 export const socialLinks = [
   {
     label: "Email",
-    value: "julio0alves@gmail.com",
-    href: "mailto:julio0alves@gmail.com",
+    value: "juliooalves73@gmail.com",
+    href: "mailto:juliooalves73@gmail.com",
     icon: Mail,
     external: false,
   },
@@ -39,7 +39,7 @@ export const socialLinks = [
   {
     label: "Workana",
     value: "julio-alves",
-    href: "https://workana.com/freelancer/julio-alves",
+    href: "https://www.workana.com/freelancer/0dcc14ca3694538ac18702c1d617cca5",
     icon: BriefcaseBusiness,
     external: true,
   },

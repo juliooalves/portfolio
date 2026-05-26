@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { LoadProvider } from "@/contexts/load-context";
 import { ThemeProvider } from "@/contexts/theme-context";
+import { profile } from "@/lib/profile";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Júlio Alves | Full stack Developer",
-  description: "Dynamic portifolio webpage",
-  generator: "Júlio Alves",
+  title: profile.metadataTitle,
+  description: profile.metadataDescription,
+  generator: profile.generator,
 };
 
 export default function RootLayout({

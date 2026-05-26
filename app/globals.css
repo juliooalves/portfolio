@@ -23,6 +23,19 @@ body {
     sans-serif;
 }
 
+.no-callout,
+.no-callout * {
+  -webkit-touch-callout: none;
+}
+
+.no-callout img,
+.no-callout svg,
+.no-callout a,
+.no-callout button {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

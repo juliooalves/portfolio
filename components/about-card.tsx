@@ -1,35 +1,18 @@
 "use client";
 
-import { ArrowRight, Code2, ShieldCheck, Terminal } from "lucide-react";
-
-const expertise = [
-  "Application Security",
-  "Full-Stack Development",
-  "DevSecOps",
-  "TypeScript",
-  "React",
-  "Next.js",
-];
-
-const highlights = [
-  {
-    icon: ShieldCheck,
-    title: "Security-first delivery",
-    description: "AppSec habits built into planning, implementation, and review.",
-  },
-  {
-    icon: Code2,
-    title: "Full-stack execution",
-    description: "Interfaces, APIs, and deployment paths shaped around real use cases.",
-  },
-  {
-    icon: Terminal,
-    title: "Practical tooling",
-    description: "Automation and diagnostics that keep projects maintainable.",
-  },
-];
+import { ArrowRight } from "lucide-react";
+import { profile } from "@/lib/profile";
 
 export default function AboutCard() {
+  const scrollToProjects = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
+    const projects = document.getElementById("projects");
+    if (projects) {
+      projects.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div
       className="relative mx-auto max-w-4xl rounded-xl border border-slate-200 bg-slate-100/80 p-5 text-slate-900/90
@@ -40,25 +23,24 @@ export default function AboutCard() {
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
         <div className="flex gap-4">
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-xl font-bold text-slate-800 dark:border-white/10 dark:bg-black/30 dark:text-gray-100">
-            JA
+            {profile.initials}
           </div>
           <div className="min-w-0">
             <h2 className="text-2xl font-semibold tracking-tight text-slate-800 dark:text-gray-100">
-              Júlio Alves
+              {profile.name}
             </h2>
             <p className="mt-1 text-sm font-medium text-slate-500 dark:text-gray-400">
-              Full-Stack Developer & Cybersecurity Analyst
+              {profile.title}
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-500 dark:text-gray-400 sm:text-base">
-              I build web applications with a security mindset from the start,
-              balancing practical delivery with maintainable architecture and
-              clear user workflows.
+              {profile.aboutSummary}
             </p>
           </div>
         </div>
 
         <a
           href="#projects"
+          onClick={scrollToProjects}
           className="inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-semibold text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-200 dark:border-white/10 dark:bg-black/20 dark:text-gray-200 dark:hover:border-white/20 dark:hover:bg-white/10"
         >
           Projects
@@ -67,7 +49,7 @@ export default function AboutCard() {
       </div>
 
       <div className="mt-8 grid gap-3 md:grid-cols-3">
-        {highlights.map(({ icon: Icon, title, description }) => (
+        {profile.highlights.map(({ icon: Icon, title, description }) => (
           <div
             key={title}
             className="rounded-xl border border-slate-200 bg-slate-50/70 p-4 dark:border-white/10 dark:bg-black/20"
@@ -88,7 +70,7 @@ export default function AboutCard() {
           Core expertise
         </h3>
         <div className="mt-3 flex flex-wrap gap-2">
-          {expertise.map((item) => (
+          {profile.expertise.map((item) => (
             <span
               key={item}
               className="inline-flex items-center rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-600 dark:border-white/10 dark:bg-black/20 dark:text-gray-300"

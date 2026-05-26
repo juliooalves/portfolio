@@ -18,31 +18,61 @@ type ThemeContextValue = {
 const isTheme = (value: string | null): value is Theme =>
   value === "dark" || value === "light";
 
+const getSystemTheme = (): Theme =>
+  window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
 const ThemeContext = createContext<ThemeContextValue>({
-  theme: "dark",
+  theme: "light",
   toggleTheme: () => {},
 });
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === "undefined") {
-      return "dark";
-    }
-
-    const savedTheme = window.localStorage.getItem("theme");
-    return isTheme(savedTheme) ? savedTheme : "dark";
-  });
+  const [theme, setTheme] = useState<Theme>("light");
+  const [hasStoredPreference, setHasStoredPreference] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    const savedTheme = window.localStorage.getItem("theme");
+
+    if (isTheme(savedTheme)) {
+      setTheme(savedTheme);
+      setHasStoredPreference(true);
+    } else {
+      setTheme(getSystemTheme());
+    }
+
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hasMounted || hasStoredPreference) {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const syncSystemTheme = () => setTheme(getSystemTheme());
+
+    mediaQuery.addEventListener("change", syncSystemTheme);
+    return () => mediaQuery.removeEventListener("change", syncSystemTheme);
+  }, [hasMounted, hasStoredPreference]);
+
+  useEffect(() => {
+    if (!hasMounted) {
+      return;
+    }
+
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
     root.classList.add(theme);
-
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  }, [hasMounted, theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    setTheme((prev) => {
+      const nextTheme = prev === "light" ? "dark" : "light";
+      localStorage.setItem("theme", nextTheme);
+      return nextTheme;
+    });
+    setHasStoredPreference(true);
   };
 
   return (
